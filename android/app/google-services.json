@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "8197924405",
+    "project_id": "aapdi-dukan-c6703",
+    "storage_bucket": "aapdi-dukan-c6703.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8197924405:android:7af9bd63fdb70337fcb37c",
+        "android_client_info": {
+          "package_name": "com.aapdidukan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "8197924405-j8tg9crm44q95qa877en31e8qaghgn5l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwcPV8pVwiVTOpw0omD5NQXLGOvhZdam0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "8197924405-j8tg9crm44q95qa877en31e8qaghgn5l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
