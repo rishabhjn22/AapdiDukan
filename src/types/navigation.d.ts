@@ -3,7 +3,11 @@ type RootStackParamList = {
   Welcome: undefined;
   GroceryList: undefined;
   GrocerySubList: {
-    id: string;
+    name: string;
   };
   AddGrocery: undefined;
+  AddGrocerySubList: {
+    do: 'Add' | 'Edit';
+    data?: {id: string; name: string; image_url: any};
+  };
 };

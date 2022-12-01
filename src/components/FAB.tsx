@@ -1,13 +1,12 @@
 import {Pressable, StyleSheet} from 'react-native';
 import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {horizontalScale, verticalScale} from '../utils/responsive';
 import {FABProps} from '../types/propTypes';
 
-export default function FAB({onPress}: FABProps) {
+export default function FAB({onPress, name, size, style}: FABProps) {
   return (
-    <Pressable style={styles.container} onPress={onPress}>
-      <AntDesign name="plus" size={25} color="#FAFAFA" />
+    <Pressable style={[styles.container, style]} onPress={onPress}>
+      <AntDesign name={name} size={size} color="#FAFAFA" />
     </Pressable>
   );
 }
@@ -15,13 +14,10 @@ export default function FAB({onPress}: FABProps) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#CCCCCC',
-    position: 'absolute',
-    bottom: verticalScale(50),
-    right: horizontalScale(30),
-    width: 50,
-    height: 50,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 50,
+    width: 50,
+    height: 50,
   },
 });

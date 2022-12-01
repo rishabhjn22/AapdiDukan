@@ -7,6 +7,7 @@ import Welcome from './src/view/Welcome';
 import GroceryList from './src/view/GroceryList';
 import AddGrocery from './src/view/AddGrocery';
 import GrocerySubList from './src/view/GrocerySubList';
+import AddGrocerySubList from './src/view/AddGrocerySubList';
 
 function App() {
   const RootStack = createStackNavigator();
@@ -38,6 +39,11 @@ function App() {
             options={{headerShown: false}}
             name="GrocerySubList"
             component={GrocerySubList}
+          />
+          <RootStack.Screen
+            options={{headerShown: false}}
+            name="AddGrocerySubList"
+            component={AddGrocerySubList}
           />
         </RootStack.Navigator>
       </NavigationContainer>

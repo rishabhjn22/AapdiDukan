@@ -17,6 +17,9 @@ type WeclomeProps = {
 
 type FABProps = {
   onPress: () => void;
+  name: string;
+  size: number;
+  style?: StyleProp;
 };
 
 type GroceryListProps = {
@@ -36,6 +39,11 @@ type OptionsProps = {
 };
 
 type GrocerySubListParams = {
-  route: StackNavigationProp<RootStackParamList, 'GrocerySubList'>;
+  route: RouteProp<RootStackParamList, 'GrocerySubList'>;
   navigation: StackNavigationProp<RootStackParamList, 'GrocerySubList'>;
+};
+
+type AddGrocerySubListProps = {
+  route: RouteProp<RootStackParamList, 'AddGrocerySubList'>;
+  navigation: StackNavigationProp<RootStackParamList, 'AddGrocerySubList'>;
 };
