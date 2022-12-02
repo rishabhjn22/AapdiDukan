@@ -21,6 +21,9 @@ import Options from '../components/Options';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import CustomButton from '../components/CustomButton';
+import {colors} from '../utils/colors';
+import LinearGradient from 'react-native-linear-gradient';
+import CustomHeader from '../components/CustomHeader';
 
 export default function AddGrocery() {
   const [name, setName] = useState('');
@@ -127,10 +130,10 @@ export default function AddGrocery() {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerView}>
-        <Text style={styles.headerText}>AddData</Text>
-      </View>
+    <LinearGradient
+      colors={[colors.gradiant1, colors.white, colors.gradiant2]}
+      style={styles.container}>
+      <CustomHeader />
       <View style={styles.inputConatiner}>
         <Input
           label="Name"
@@ -146,17 +149,17 @@ export default function AddGrocery() {
           {image.length !== 0 && (
             <Image source={{uri: image}} style={styles.image} />
           )}
-          <AntDesign name="camera" size={30} color="#CCCCCC" />
-          <Text>Upload Photo</Text>
+          <AntDesign name="camera" size={30} color={colors.secondary} />
+          <Text style={styles.uploadText}>Upload Photo</Text>
           {uploading && (
             <View>
               <Text>{transferred} % Completed!</Text>
-              <ActivityIndicator size="large" color="#0000ff" />
+              <ActivityIndicator size="large" color={colors.secondary} />
             </View>
           )}
         </Pressable>
       </View>
-      <View>
+      <View style={styles.button}>
         <CustomButton title="Submit" onPress={onSubmit} />
       </View>
       <Modal
@@ -170,27 +173,24 @@ export default function AddGrocery() {
           onPressGallery={choosePhotoFromLibrary}
         />
       </Modal>
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.primary,
   },
   inputConatiner: {
     marginTop: verticalScale(30),
     width: horizontalScale(350),
     alignSelf: 'center',
   },
-  headerView: {
-    alignItems: 'center',
-    marginTop: verticalScale(20),
-  },
   headerText: {
-    fontFamily: 'Roboto-Medium',
+    color: colors.textColor,
     fontSize: moderateScale(18),
+    fontFamily: 'Roboto-Bold',
   },
   photoback: {
     width: horizontalScale(350),
@@ -198,7 +198,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     marginTop: verticalScale(30),
-    backgroundColor: '#CACACA',
+    backgroundColor: colors.secondary,
+    elevation: 2,
   },
   photobackinner: {
     alignItems: 'center',
@@ -206,7 +207,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     height: verticalScale(160),
     justifyContent: 'center',
-    backgroundColor: '#ECECEC',
+    backgroundColor: '#FFFFFF',
   },
   modal: {
     width: '90%',
@@ -217,5 +218,20 @@ const styles = StyleSheet.create({
     height: verticalScale(160),
     width: horizontalScale(320),
     position: 'absolute',
+  },
+  button: {
+    margin: 50,
+    marginTop: verticalScale(50),
+  },
+  uploadText: {
+    color: colors.textColor,
+    fontSize: moderateScale(16),
+    lineHeight: verticalScale(25),
+    fontFamily: 'Roboto-Medium',
+  },
+  headerView: {
+    padding: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

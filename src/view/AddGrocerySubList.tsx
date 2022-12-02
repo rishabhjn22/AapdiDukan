@@ -23,6 +23,9 @@ import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import CustomButton from '../components/CustomButton';
 import {AddGrocerySubListProps} from '../types/propTypes';
+import CustomHeader from '../components/CustomHeader';
+import {colors} from '../utils/colors';
+import LinearGradient from 'react-native-linear-gradient';
 
 export default function AddGrocerySubList({route}: AddGrocerySubListProps) {
   const [name, setName] = useState('');
@@ -177,10 +180,11 @@ export default function AddGrocerySubList({route}: AddGrocerySubListProps) {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerView}>
-        <Text style={styles.headerText}>AddData</Text>
-      </View>
+    <LinearGradient
+      useAngle={true}
+      colors={[colors.gradiant1, colors.white, colors.gradiant2]}
+      style={styles.container}>
+      <CustomHeader />
       <View style={styles.inputConatiner}>
         <Input
           label="Name"
@@ -223,14 +227,14 @@ export default function AddGrocerySubList({route}: AddGrocerySubListProps) {
           onPressGallery={choosePhotoFromLibrary}
         />
       </Modal>
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: colors.primary,
   },
   inputConatiner: {
     marginTop: verticalScale(30),
@@ -251,7 +255,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     marginTop: verticalScale(30),
-    backgroundColor: '#CACACA',
+    backgroundColor: colors.secondary,
   },
   photobackinner: {
     alignItems: 'center',

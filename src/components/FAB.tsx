@@ -2,6 +2,7 @@ import {Pressable, StyleSheet} from 'react-native';
 import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {FABProps} from '../types/propTypes';
+import {colors} from '../utils/colors';
 
 export default function FAB({onPress, name, size, style}: FABProps) {
   return (
@@ -13,7 +14,7 @@ export default function FAB({onPress, name, size, style}: FABProps) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#CCCCCC',
+    backgroundColor: colors.secondary,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 50,

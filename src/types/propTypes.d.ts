@@ -9,6 +9,7 @@ type CustomButtonProps = {
   onPress: () => void;
   title: string;
   style?: StyleProp;
+  textStyle?: StyleProp;
 };
 
 type WeclomeProps = {
@@ -27,10 +28,11 @@ type GroceryListProps = {
 };
 
 type InputProps = {
-  label: string;
+  label?: string;
   value: string;
   onChangeText: (val: string) => void;
   placeholder: string;
+  endIcon?: boolean;
 };
 
 type OptionsProps = {
@@ -46,4 +48,15 @@ type GrocerySubListParams = {
 type AddGrocerySubListProps = {
   route: RouteProp<RootStackParamList, 'AddGrocerySubList'>;
   navigation: StackNavigationProp<RootStackParamList, 'AddGrocerySubList'>;
+};
+
+type SubListProps = {id: string; name: string; image_url: any};
+
+type ListProps = {
+  name: any;
+  image_url: any;
+};
+
+type LoaderProps = {
+  isLoading: boolean;
 };
