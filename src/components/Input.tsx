@@ -11,6 +11,7 @@ export default function Input({
   onChangeText,
   placeholder,
   endIcon,
+  error,
 }: InputProps) {
   return (
     <View style={styles.container}>
@@ -22,6 +23,7 @@ export default function Input({
         style={styles.input}
       />
       {endIcon && <EndIcon />}
+      {error && <Text style={styles.error}>{error}</Text>}
     </View>
   );
 }
@@ -39,5 +41,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     elevation: 1,
+  },
+  error: {
+    color: 'red',
+    top: 5,
   },
 });

@@ -33,6 +33,7 @@ type InputProps = {
   onChangeText: (val: string) => void;
   placeholder: string;
   endIcon?: boolean;
+  error?: string;
 };
 
 type OptionsProps = {
@@ -45,12 +46,23 @@ type GrocerySubListParams = {
   navigation: StackNavigationProp<RootStackParamList, 'GrocerySubList'>;
 };
 
+type AddGroceryProps = {
+  navigation: StackNavigationProp<RootStackParamList, 'AddGroceryist'>;
+};
+
 type AddGrocerySubListProps = {
   route: RouteProp<RootStackParamList, 'AddGrocerySubList'>;
   navigation: StackNavigationProp<RootStackParamList, 'AddGrocerySubList'>;
 };
 
-type SubListProps = {id: string; name: string; image_url: any};
+type SubListProps = {
+  id: string;
+  name: string;
+  image_url: any;
+  selling_price: string;
+  buying_price: string;
+  last_selling_price: string;
+};
 
 type ListProps = {
   name: any;
@@ -59,4 +71,17 @@ type ListProps = {
 
 type LoaderProps = {
   isLoading: boolean;
+};
+
+type FloatingActionsProps = {
+  isOpen: boolean;
+  onClosed: () => void;
+};
+
+type CustomHeaderProps = {
+  heading: string;
+  onPressBack?: () => void;
+  back?: boolean;
+  deleteButton?: boolean;
+  onPressDelete?: () => void;
 };

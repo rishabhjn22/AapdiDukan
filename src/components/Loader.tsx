@@ -1,7 +1,7 @@
 import {View, StyleSheet, ActivityIndicator, Text} from 'react-native';
 import React from 'react';
 import {horizontalScale, verticalScale} from '../utils/responsive';
-import FastImage from 'react-native-fast-image';
+// import FastImage from 'react-native-fast-image';
 import {colors} from '../utils/colors';
 
 export default function Loader() {
@@ -21,16 +21,17 @@ export default function Loader() {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'center',
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0 ,0, 0.5)',
     alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 10,
   },
   card: {
-    // backgroundColor: 'transparent',
+    backgroundColor: 'white',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 10,
   },
   image: {
     height: verticalScale(200),

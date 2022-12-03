@@ -31,7 +31,7 @@ export default function Welcome({navigation}: WeclomeProps) {
       useAngle={true}
       colors={[colors.gradiant1, colors.white, colors.gradiant2]}
       style={styles.container}>
-      <CustomHeader />
+      <CustomHeader heading="Welcome" />
       <View style={styles.textContainer}>
         <Text style={styles.welcomeText}>{t('hello')} </Text>
         <Text style={styles.headerText}>

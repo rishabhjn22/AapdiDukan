@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Image,
   ListRenderItemInfo,
@@ -7,7 +8,7 @@ import {
   View,
   FlatList,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import FAB from '../components/FAB';
 import {GroceryListProps, ListProps} from '../types/propTypes';
@@ -21,6 +22,8 @@ import {colors} from '../utils/colors';
 import LinearGradient from 'react-native-linear-gradient';
 import Input from '../components/Input';
 import Loader from '../components/Loader';
+import GlobalContext from '../contexts/GlobalContext';
+import {truncateString} from '../utils/helper';
 
 export default function GroceryList({navigation}: GroceryListProps) {
   const [items, setItems] = useState<ListProps[]>([]);
@@ -28,8 +31,10 @@ export default function GroceryList({navigation}: GroceryListProps) {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const {setProductId} = useContext(GlobalContext);
+
   useEffect(() => {
-    getData();
+    navigation.addListener('focus', getData);
   }, []);
 
   function searchData(value: string) {
@@ -67,21 +72,24 @@ export default function GroceryList({navigation}: GroceryListProps) {
     setFileteredData(list);
   }
 
+  function onPressGoods(item: {name: any; image_url: any}) {
+    navigation.navigate('GrocerySubList', {name: item.name});
+    setProductId(item.name);
+  }
+
   function renderItem({item}: ListRenderItemInfo<{name: any; image_url: any}>) {
     return (
       <View style={styles.item}>
-        <Pressable
-          style={styles.itemContainer}
-          onPress={() =>
-            navigation.navigate('GrocerySubList', {name: item.name})
-          }>
+        <Pressable onPress={() => onPressGoods(item)}>
           <Image
             source={{uri: item.image_url}}
             style={styles.image}
             resizeMode="contain"
           />
         </Pressable>
-        <Text style={styles.name}>{item.name}</Text>
+        <Text style={styles.name} numberOfLines={1} ellipsizeMode="tail">
+          {truncateString(item.name, item.name.length > 8 ? 10 : 6)}
+        </Text>
       </View>
     );
   }
@@ -91,7 +99,11 @@ export default function GroceryList({navigation}: GroceryListProps) {
       useAngle={true}
       colors={[colors.gradiant1, colors.white, colors.gradiant2]}
       style={styles.container}>
-      <CustomHeader />
+      <CustomHeader
+        heading=""
+        onPressBack={() => navigation.goBack()}
+        back={true}
+      />
 
       <View>
         <View style={styles.search}>
@@ -113,6 +125,7 @@ export default function GroceryList({navigation}: GroceryListProps) {
         />
       </View>
       {loading && <Loader />}
+
       <View style={styles.fab}>
         <FAB
           onPress={() => navigation.navigate('AddGrocery')}
@@ -139,16 +152,15 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   item: {
-    marginLeft: horizontalScale(20),
+    margin: 15,
     marginTop: verticalScale(10),
-    marginBottom: verticalScale(10),
+    marginBottom: verticalScale(15),
     alignItems: 'center',
   },
   image: {
     height: 100,
     width: 100,
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
+    borderRadius: 8,
   },
   name: {
     fontSize: moderateScale(16),
@@ -156,8 +168,14 @@ const styles = StyleSheet.create({
     top: verticalScale(7.5),
     color: colors.textColor,
   },
-  flatlist: {marginTop: verticalScale(20)},
+  flatlist: {
+    marginTop: verticalScale(10),
+    alignItems: 'center',
+  },
   search: {
     margin: 20,
+  },
+  floatingButtons: {
+    marginBottom: 20,
   },
 });
