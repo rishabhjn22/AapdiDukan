@@ -100,7 +100,7 @@ export default function GroceryList({navigation}: GroceryListProps) {
       colors={[colors.gradiant1, colors.white, colors.gradiant2]}
       style={styles.container}>
       <CustomHeader
-        heading=""
+        heading="KIRANA LIST"
         onPressBack={() => navigation.goBack()}
         back={true}
       />

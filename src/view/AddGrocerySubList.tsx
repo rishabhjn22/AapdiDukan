@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Alert,
 } from 'react-native';
 import React, {useContext, useEffect, useState} from 'react';
 import Input from '../components/Input';
@@ -132,6 +133,35 @@ export default function AddGrocerySubList({
     }
   };
 
+  function alert() {
+    Alert.alert(`Delete ${name}`, `${name} will be deleted!`, [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {text: 'OK', onPress: () => deleteItem()},
+    ]);
+  }
+
+  function deleteItem() {
+    setUploading(true);
+    firestore()
+      .collection('Goods')
+      .doc(productId)
+      .collection('Items')
+      .doc(groceryDetails.id)
+      .delete()
+      .then(() => {
+        Toast.show({
+          type: 'error',
+          text1: 'User deleted!',
+        });
+        setUploading(false);
+        navigation.goBack();
+      });
+  }
+
   function validation(): boolean {
     const validationErrors: GrocerySubListErrors = {};
     if (name.length === 0) {
@@ -231,11 +261,15 @@ export default function AddGrocerySubList({
       colors={[colors.gradiant1, colors.white, colors.gradiant2]}
       style={styles.container}>
       <CustomHeader
-        heading="Add Item"
+        heading={
+          route.params.do === 'Add'
+            ? `ADD NEW ${productId.toUpperCase()}`
+            : name
+        }
         back={true}
         onPressBack={() => navigation.goBack()}
         deleteButton={true}
-        onPressDelete={() => console.log('delete')}
+        onPressDelete={() => alert()}
       />
       {uploading && <Loader />}
       <ScrollView>

@@ -142,7 +142,7 @@ export default function AddGrocery({navigation}: AddGroceryProps) {
       colors={[colors.gradiant1, colors.white, colors.gradiant2]}
       style={styles.container}>
       <CustomHeader
-        heading="Add Item"
+        heading="ADD KIRANA ITEM"
         back={true}
         onPressBack={() => navigation.goBack()}
       />
