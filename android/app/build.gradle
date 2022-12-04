@@ -219,6 +219,14 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            if (project.hasProperty('AAPDI_DUKAN_APP_STORE_FILE')) {
+                storeFile file(AAPDI_DUKAN_APP_STORE_FILE)
+                storePassword AAPDI_DUKAN_APP_STORE_PASSWORD
+                keyAlias AAPDI_DUKAN_KEY_ALIAS
+                keyPassword AAPDI_DUKAN_APP_UPLOAD_KEY_PASSWORD
+            }
+        }
     }
     buildTypes {
         debug {
