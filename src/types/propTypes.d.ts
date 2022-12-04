@@ -34,6 +34,8 @@ type InputProps = {
   placeholder: string;
   endIcon?: boolean;
   error?: string;
+  keyboardType?: numeric | default;
+  maxLength?: number;
 };
 
 type OptionsProps = {

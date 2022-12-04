@@ -12,6 +12,8 @@ export default function Input({
   placeholder,
   endIcon,
   error,
+  maxLength,
+  keyboardType,
 }: InputProps) {
   return (
     <View style={styles.container}>
@@ -21,6 +23,8 @@ export default function Input({
         placeholder={placeholder}
         onChangeText={onChangeText}
         style={styles.input}
+        maxLength={maxLength}
+        keyboardType={keyboardType}
       />
       {endIcon && <EndIcon />}
       {error && <Text style={styles.error}>{error}</Text>}

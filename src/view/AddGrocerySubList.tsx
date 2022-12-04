@@ -268,7 +268,7 @@ export default function AddGrocerySubList({
         }
         back={true}
         onPressBack={() => navigation.goBack()}
-        deleteButton={true}
+        deleteButton={route.params.do === 'Add' ? false : true}
         onPressDelete={() => alert()}
       />
       {uploading && <Loader />}
@@ -295,6 +295,7 @@ export default function AddGrocerySubList({
             value={name}
             onChangeText={val => setName(val)}
             placeholder="Enter Name"
+            maxLength={14}
             error={errors.name}
           />
         </View>
@@ -303,7 +304,9 @@ export default function AddGrocerySubList({
             label="Selling Price"
             value={sellingPrice}
             onChangeText={val => setSellingPrice(val)}
-            placeholder="Enter Name"
+            placeholder="Enter Selling Price"
+            keyboardType="numeric"
+            maxLength={4}
             error={errors.selling}
           />
         </View>
@@ -312,7 +315,9 @@ export default function AddGrocerySubList({
             label="Buying Price"
             value={buyingPrice}
             onChangeText={val => setBuyingPrice(val)}
-            placeholder="Enter Name"
+            placeholder="Enter Buying Price"
+            keyboardType="numeric"
+            maxLength={4}
             error={errors.buying}
           />
         </View>
@@ -321,7 +326,9 @@ export default function AddGrocerySubList({
             label="Last Selling Price"
             value={lastSellingPrice}
             onChangeText={val => setLastSellingPrice(val)}
-            placeholder="Enter Name"
+            placeholder="Enter Last Selling Price"
+            keyboardType="numeric"
+            maxLength={4}
           />
         </View>
 
