@@ -3,7 +3,7 @@ import {View, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Toast from 'react-native-toast-message';
-import Splash from './src/view/Splash';
+// import Splash from './src/view/Splash';
 import Welcome from './src/view/Welcome';
 import GroceryList from './src/view/GroceryList';
 import AddGrocery from './src/view/AddGrocery';
@@ -19,11 +19,11 @@ function App() {
       <View style={styles.container}>
         <NavigationContainer>
           <RootStack.Navigator>
-            <RootStack.Screen
+            {/* <RootStack.Screen
               options={{headerShown: false}}
               name="Splash"
               component={Splash}
-            />
+            /> */}
             <RootStack.Screen
               options={{headerShown: false}}
               name="Welcome"
