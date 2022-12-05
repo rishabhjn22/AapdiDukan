@@ -84,7 +84,8 @@ export default function GroceryList({navigation}: GroceryListProps) {
           <Image
             source={{uri: item.image_url}}
             style={styles.image}
-            resizeMode="contain"
+            resizeMode="cover"
+            // resizeMethod='resize'
           />
         </Pressable>
         <Text style={styles.name} numberOfLines={1} ellipsizeMode="tail">
@@ -105,25 +106,23 @@ export default function GroceryList({navigation}: GroceryListProps) {
         back={true}
       />
 
-      <View>
-        <View style={styles.search}>
-          <Input
-            placeholder="Search..."
-            endIcon={true}
-            value={search}
-            onChangeText={value => searchData(value)}
-          />
-        </View>
-
-        <FlatList
-          showsHorizontalScrollIndicator={false}
-          data={fileteredData}
-          renderItem={renderItem}
-          keyExtractor={item => item.name}
-          numColumns={3}
-          contentContainerStyle={styles.flatlist}
+      <View style={styles.search}>
+        <Input
+          placeholder="Search..."
+          endIcon={true}
+          value={search}
+          onChangeText={value => searchData(value)}
         />
       </View>
+
+      <FlatList
+        data={fileteredData}
+        renderItem={renderItem}
+        keyExtractor={item => item.name}
+        numColumns={3}
+        contentContainerStyle={styles.flatlist}
+      />
+
       {loading && <Loader />}
 
       <View style={styles.fab}>
@@ -154,8 +153,8 @@ const styles = StyleSheet.create({
   item: {
     margin: 15,
     marginTop: verticalScale(10),
-    marginBottom: verticalScale(15),
     alignItems: 'center',
+    marginBottom: verticalScale(20),
   },
   image: {
     height: 100,
