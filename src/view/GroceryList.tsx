@@ -24,12 +24,15 @@ import Input from '../components/Input';
 import Loader from '../components/Loader';
 import GlobalContext from '../contexts/GlobalContext';
 import {truncateString} from '../utils/helper';
+import Modal from 'react-native-modalbox';
+import FastImage from 'react-native-fast-image';
 
 export default function GroceryList({navigation}: GroceryListProps) {
   const [items, setItems] = useState<ListProps[]>([]);
   const [fileteredData, setFileteredData] = useState<ListProps[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
+  const [voiceModal, setVoiceModal] = useState(false);
 
   const {setProductId} = useContext(GlobalContext);
 
@@ -77,6 +80,10 @@ export default function GroceryList({navigation}: GroceryListProps) {
     setProductId(item.name);
   }
 
+  function onClosed() {
+    setVoiceModal(false);
+  }
+
   function renderItem({item}: ListRenderItemInfo<{name: any; image_url: any}>) {
     return (
       <View style={styles.item}>
@@ -101,7 +108,7 @@ export default function GroceryList({navigation}: GroceryListProps) {
       colors={[colors.gradiant1, colors.white, colors.gradiant2]}
       style={styles.container}>
       <CustomHeader
-        heading="KIRANA LIST"
+        heading="Test"
         onPressBack={() => navigation.goBack()}
         back={true}
       />
@@ -112,6 +119,7 @@ export default function GroceryList({navigation}: GroceryListProps) {
           endIcon={true}
           value={search}
           onChangeText={value => searchData(value)}
+          onPressMicroPhone={() => setVoiceModal(true)}
         />
       </View>
 
@@ -132,6 +140,19 @@ export default function GroceryList({navigation}: GroceryListProps) {
           name="plus"
         />
       </View>
+      <Modal
+        isOpen={voiceModal}
+        onClosed={onClosed}
+        style={styles.modal}
+        position="bottom">
+        <View style={styles.modalContainer}>
+          <Text style={styles.headerModalSpeech}>Listening...</Text>
+          <FastImage
+            source={require('../assets/images/sound.gif')}
+            style={styles.soundImage}
+          />
+        </View>
+      </Modal>
     </LinearGradient>
   );
 }
@@ -176,5 +197,24 @@ const styles = StyleSheet.create({
   },
   floatingButtons: {
     marginBottom: 20,
+  },
+  modal: {
+    height: 'auto',
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+  },
+  soundImage: {
+    height: 100,
+    width: 100,
+    marginTop: 10,
+  },
+  modalContainer: {
+    alignItems: 'center',
+    padding: 30,
+  },
+  headerModalSpeech: {
+    fontSize: moderateScale(16),
+    fontFamily: 'Roboto-Bold',
+    color: colors.textColor,
   },
 });

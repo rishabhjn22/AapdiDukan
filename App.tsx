@@ -10,6 +10,7 @@ import AddGrocery from './src/view/AddGrocery';
 import GrocerySubList from './src/view/GrocerySubList';
 import AddGrocerySubList from './src/view/AddGrocerySubList';
 import GlobalContext from './src/contexts/GlobalContext';
+// import VoiceTest from './src/view/VoiceTest';
 
 function App() {
   const RootStack = createStackNavigator();
@@ -21,8 +22,8 @@ function App() {
           <RootStack.Navigator>
             {/* <RootStack.Screen
               options={{headerShown: false}}
-              name="Splash"
-              component={Splash}
+              name="VoiceTest"
+              component={VoiceTest}
             /> */}
             <RootStack.Screen
               options={{headerShown: false}}

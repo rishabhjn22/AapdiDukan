@@ -1,4 +1,5 @@
 type RootStackParamList = {
+  Voice: undefined;
   Splash: undefined;
   Welcome: undefined;
   GroceryList: undefined;

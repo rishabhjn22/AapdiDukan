@@ -36,6 +36,7 @@ type InputProps = {
   error?: string;
   keyboardType?: numeric | default;
   maxLength?: number;
+  onPressMicroPhone?: () => void;
 };
 
 type OptionsProps = {
@@ -86,4 +87,12 @@ type CustomHeaderProps = {
   back?: boolean;
   deleteButton?: boolean;
   onPressDelete?: () => void;
+};
+
+type VoiceTestProps = {
+  navigation: StackNavigationProp<RootStackParamList, 'VoiceTest'>;
+};
+
+type EndIconProps = {
+  onPressMicroPhone?: () => void;
 };

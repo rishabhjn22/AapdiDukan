@@ -14,6 +14,7 @@ export default function Input({
   error,
   maxLength,
   keyboardType,
+  onPressMicroPhone,
 }: InputProps) {
   return (
     <View style={styles.container}>
@@ -26,7 +27,7 @@ export default function Input({
         maxLength={maxLength}
         keyboardType={keyboardType}
       />
-      {endIcon && <EndIcon />}
+      {endIcon && <EndIcon onPressMicroPhone={onPressMicroPhone} />}
       {error && <Text style={styles.error}>{error}</Text>}
     </View>
   );
