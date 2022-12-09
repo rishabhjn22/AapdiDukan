@@ -64,7 +64,7 @@ export default function AddGrocerySubList({
   function takePhotoFromCamera() {
     ImagePicker.openCamera({
       width: 1200,
-      height: 780,
+      height: 1200,
       cropping: true,
     })
       .then(el => {
@@ -83,7 +83,7 @@ export default function AddGrocerySubList({
   function choosePhotoFromLibrary() {
     ImagePicker.openPicker({
       width: 1200,
-      height: 780,
+      height: 1200,
       cropping: true,
     })
       .then(el => {
@@ -277,7 +277,11 @@ export default function AddGrocerySubList({
           style={styles.photobackinner}
           onPress={() => setShowModal(true)}>
           {image.length !== 0 && (
-            <Image source={{uri: image}} style={styles.image} />
+            <Image
+              source={{uri: image}}
+              style={styles.image}
+              resizeMode="cover"
+            />
           )}
           <AntDesign name="camera" size={30} color="#CCCCCC" />
           <Text>Upload Photo</Text>

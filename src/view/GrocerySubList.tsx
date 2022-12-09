@@ -93,6 +93,7 @@ export default function GrocerySubList({
       {loading && <Loader />}
       <View style={styles.search}>
         <Input
+          iconName="search"
           placeholder="Search..."
           endIcon={true}
           value={search}
@@ -115,7 +116,7 @@ export default function GrocerySubList({
               <Image
                 source={{uri: item.image_url}}
                 style={styles.image}
-                resizeMode="contain"
+                resizeMode="cover"
               />
 
               <View style={styles.detailsContainer}>

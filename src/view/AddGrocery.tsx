@@ -35,7 +35,7 @@ export default function AddGrocery({navigation}: AddGroceryProps) {
   function takePhotoFromCamera() {
     ImagePicker.openCamera({
       width: 1200,
-      height: 780,
+      height: 1200,
       cropping: true,
     })
       .then(el => {
@@ -50,7 +50,7 @@ export default function AddGrocery({navigation}: AddGroceryProps) {
   function choosePhotoFromLibrary() {
     ImagePicker.openPicker({
       width: 1200,
-      height: 780,
+      height: 1200,
       cropping: true,
     })
       .then(el => {

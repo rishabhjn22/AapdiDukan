@@ -115,11 +115,12 @@ export default function GroceryList({navigation}: GroceryListProps) {
 
       <View style={styles.search}>
         <Input
+          iconName="search"
           placeholder="Search..."
           endIcon={true}
           value={search}
           onChangeText={value => searchData(value)}
-          onPressMicroPhone={() => setVoiceModal(true)}
+          // onPressMicroPhone={() => setVoiceModal(true)}
         />
       </View>
 

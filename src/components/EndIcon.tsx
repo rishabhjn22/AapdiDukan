@@ -4,10 +4,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {colors} from '../utils/colors';
 import {EndIconProps} from '../types/propTypes';
 
-export default function EndIcon({onPressMicroPhone}: EndIconProps) {
+export default function EndIcon({onPressMicroPhone, name}: EndIconProps) {
   return (
     <Pressable style={styles.conatiner} onPress={onPressMicroPhone}>
-      <FontAwesome name="microphone" size={20} color={colors.secondary} />
+      <FontAwesome name={name} size={20} color={colors.secondary} />
     </Pressable>
   );
 }

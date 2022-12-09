@@ -37,6 +37,7 @@ type InputProps = {
   keyboardType?: numeric | default;
   maxLength?: number;
   onPressMicroPhone?: () => void;
+  iconName: string;
 };
 
 type OptionsProps = {
@@ -95,4 +96,5 @@ type VoiceTestProps = {
 
 type EndIconProps = {
   onPressMicroPhone?: () => void;
+  name: string;
 };
