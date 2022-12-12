@@ -1,6 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React, {useContext, useEffect, useState} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import {GrocerySubListParams, SubListProps} from '../types/propTypes';
@@ -100,61 +107,62 @@ export default function GrocerySubList({
           onChangeText={value => searchData(value)}
         />
       </View>
+      <ScrollView>
+        {fileteredData.length !== 0 ? (
+          fileteredData.map(item => {
+            return (
+              <Pressable
+                key={item.name}
+                style={styles.itemContainer}
+                onPress={() =>
+                  navigation.navigate('AddGrocerySubList', {
+                    do: 'Edit',
+                    data: item,
+                  })
+                }>
+                <Image
+                  source={{uri: item.image_url}}
+                  style={styles.image}
+                  resizeMode="cover"
+                />
 
-      {fileteredData.length !== 0 ? (
-        fileteredData.map(item => {
-          return (
-            <Pressable
-              key={item.name}
-              style={styles.itemContainer}
-              onPress={() =>
-                navigation.navigate('AddGrocerySubList', {
-                  do: 'Edit',
-                  data: item,
-                })
-              }>
-              <Image
-                source={{uri: item.image_url}}
-                style={styles.image}
-                resizeMode="cover"
-              />
+                <View style={styles.detailsContainer}>
+                  <View style={styles.textContainer}>
+                    <Text style={styles.text}>{item.name.toUpperCase()}</Text>
+                  </View>
 
-              <View style={styles.detailsContainer}>
-                <View style={styles.textContainer}>
-                  <Text style={styles.text}>{item.name.toUpperCase()}</Text>
+                  <View style={styles.priceCont}>
+                    {/* <View style={styles.priceTag}> */}
+                    <Text style={styles.price}>Buy: ₹{item.buying_price}</Text>
+                    {/* </View> */}
+                    {/* <View style={styles.priceTag}> */}
+                    {item.last_selling_price && (
+                      <Text style={[styles.price, {left: 10}]}>
+                        Last: ₹{item.last_selling_price}
+                      </Text>
+                    )}
+
+                    {/* </View> */}
+                  </View>
                 </View>
 
-                <View style={styles.priceCont}>
-                  {/* <View style={styles.priceTag}> */}
-                  <Text style={styles.price}>Buy: ₹{item.buying_price}</Text>
-                  {/* </View> */}
-                  {/* <View style={styles.priceTag}> */}
-                  {item.last_selling_price && (
-                    <Text style={[styles.price, {left: 10}]}>
-                      Last: ₹{item.last_selling_price}
-                    </Text>
-                  )}
-
-                  {/* </View> */}
+                <View style={styles.accod}>
+                  <Text style={[styles.text, {fontSize: moderateScale(18)}]}>
+                    ₹{item.selling_price}
+                  </Text>
                 </View>
-              </View>
-
-              <View style={styles.accod}>
-                <Text style={[styles.text, {fontSize: moderateScale(18)}]}>
-                  ₹{item.selling_price}
-                </Text>
-              </View>
-            </Pressable>
-          );
-        })
-      ) : (
-        <View style={styles.noDataContainer}>
-          <Image
-            source={require('../assets/images/NoData.png')}
-            style={styles.noDataImage}
-          />
-        </View>
-      )}
+              </Pressable>
+            );
+          })
+        ) : (
+          <View style={styles.noDataContainer}>
+            <Image
+              source={require('../assets/images/NoData.png')}
+              style={styles.noDataImage}
+            />
+          </View>
+        )}
+      </ScrollView>
       <View style={styles.fab}>
         <FAB
           size={25}
